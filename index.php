@@ -1,6 +1,14 @@
 <?php
+    ini_set('display_errors', 1); 
+    error_reporting(E_ALL);
     require 'header.php';
-    require 'oeuvres.php';
+    require 'config/env.php';
+    //require 'oeuvres.php';
+    $mysqlClient = connexion();
+    $sqlQuery = 'SELECT * FROM oeuvres';
+    $Statmentoeuvres = $mysqlClient->prepare($sqlQuery);
+    $Statmentoeuvres->execute();
+    $oeuvres = $Statmentoeuvres->fetchAll();
 ?>
 <div id="liste-oeuvres">
     <?php foreach($oeuvres as $oeuvre): ?>
