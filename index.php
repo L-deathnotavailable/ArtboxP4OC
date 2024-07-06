@@ -1,9 +1,7 @@
 <?php
-    ini_set('display_errors', 1); 
-    error_reporting(E_ALL);
     require 'header.php';
     require 'config/env.php';
-    //require 'oeuvres.php';
+
     $mysqlClient = connexion();
     $sqlQuery = 'SELECT * FROM oeuvres';
     $Statmentoeuvres = $mysqlClient->prepare($sqlQuery);

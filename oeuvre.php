@@ -1,6 +1,14 @@
 <?php
     require 'header.php';
-    require 'oeuvres.php';
+    require 'config/env.php';
+
+    $mysqlClient = connexion();
+    $sqlQuery = "SELECT * FROM oeuvres WHERE id = :id";
+    $Statmentoeuvres = $mysqlClient->prepare($sqlQuery);
+    $Statmentoeuvres->execute([
+        'id' => $_GET ['id'],
+    ]);
+    $oeuvres = $Statmentoeuvres->fetchAll();
 
     // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
     if(empty($_GET['id'])) {
